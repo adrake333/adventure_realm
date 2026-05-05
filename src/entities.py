@@ -1,4 +1,5 @@
 import random
+from src import Coins, Healing_Potion, Mana_Potion
 
 class Character:
     def __init__(self, name, health, defense, attack_power):
@@ -75,8 +76,13 @@ class Goblin(Enemy):
         super().__init__(name, health = 25, defense = 0, attack_power = 3)
 
     def drop_loot(self):
-        amount = random.randint(1, 7)
-        return Coins("Gold", amount)
+        loot_options = ["coins", "nothing", "nothing"]
+        choice = random.choice(loot_options)
+        if choice == "coins":
+            amount = random.randint(1, 7)
+            return Coins("Gold", amount)
+        else:
+            return None
 
 class Orc(Enemy):
     def __init__(self, name):
@@ -97,13 +103,15 @@ class Orc(Enemy):
             self.attack(target)
 
     def drop_loot(self):
-        loot_options - ["coins", "health_potion", "nothing"]
+        loot_options = ["coins", "health_potion", "nothing"]
         choice = random.choice(loot_options)
         if choice == "coins":
             amount = random.randint(3,8)
             return Coins("Gold", amount)
         elif choice == "health_potion":
-            return 
+            return Healing_Potion("Health Potion", heal_amount = 15)
+        else:
+            return None
 
 class Kobold(Enemy):
     def __init__(self, name):
@@ -120,3 +128,16 @@ class Kobold(Enemy):
             self.fire_breath(target)
         else:
             self.attack(target)
+
+    def drop_loot(self):
+        loot_options = ["coins", "health_potion", "mana_potion", "nothing"]
+        choice = random.choice(loot_options)
+        if choice == "coins":
+            amount = random.randint(1, 7)
+            return Coins("Gold", amount)
+        elif choice == "health_potion":
+            return Healing_Potion("Health Potion", heal_amount = 15)
+        elif choice == "mana_potion":
+            return Mana_Potion("Mana Potion", mana_restored = 2)
+        else:
+            return None
