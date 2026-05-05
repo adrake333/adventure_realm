@@ -29,6 +29,15 @@ class Player(Character):
     def __init__(self, name, health, defense, attack_power):
         super().__init__(name, health, defense, attack_power)
         self.exp_gained = 0
+        self.inventory = []
+        self.coins = 0
+
+    def add_to_inventory(self, item):
+        self.inventory.append(item)
+        print(f"{item} has been added to your inventory!")
+
+    def loot_coins(self, item):
+        self.coins += item.amount
 
 class Warrior(Player):
     def __init__(self, name):
@@ -65,6 +74,10 @@ class Goblin(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 25, defense = 0, attack_power = 3)
 
+    def drop_loot(self):
+        amount = random.randint(1, 7)
+        return Coins("Gold", amount)
+
 class Orc(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 40, defense = 1, attack_power = 5)
@@ -82,6 +95,15 @@ class Orc(Enemy):
             self.rage(target)
         else:
             self.attack(target)
+
+    def drop_loot(self):
+        loot_options - ["coins", "health_potion", "nothing"]
+        choice = random.choice(loot_options)
+        if choice == "coins":
+            amount = random.randint(3,8)
+            return Coins("Gold", amount)
+        elif choice == "health_potion":
+            return 
 
 class Kobold(Enemy):
     def __init__(self, name):
