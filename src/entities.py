@@ -1,3 +1,5 @@
+import random
+
 class Character:
     def __init__(self, name, health, defense, attack_power):
         self.name = name
@@ -56,6 +58,9 @@ class Enemy(Character):
         super().__init__(name, health, defense, attack_power)
         self.exp_value = 1
 
+    def act(self, target):
+        self.attack(target)
+
 class Goblin(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 25, defense = 0, attack_power = 3)
@@ -64,6 +69,20 @@ class Orc(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 40, defense = 1, attack_power = 5)
 
+    def rage(self,target):
+        print(f"{self.name} rages, gaining defense and attacking twice!")
+        self.defense += 1
+        if self.defense > 5:
+            self.defense = 5
+        self.attack(target)
+        self.attack(target)
+
+    def act(self, target):
+        if self.health < 20 and random.random() < 0.45:
+            self.rage(target)
+        else:
+            self.attack(target)
+
 class Kobold(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 35, defense = 0, attack_power = 4)
@@ -71,8 +90,11 @@ class Kobold(Enemy):
 
     def fire_breath(self, target):
         print(f"{self.name} uses it's fire breath!")
-        if self.breath_uses > 0:
-            self.breath_uses -= 1
-            target.take_damage(7)
+        self.breath_uses -= 1
+        target.take_damage(7)
+
+    def act(self, target):
+        if self.breath_uses > 0 and random.random() < 0.35:
+            self.fire_breath(target)
         else:
-            print(f"{self.name} has used all of its fire breath!")
+            self.attack(target)
