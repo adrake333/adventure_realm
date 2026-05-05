@@ -21,10 +21,12 @@ class Character:
         else:
             print(f"{self.name} has taken {damage} damage!")
 
+
+#PLAYER
 class Player(Character):
     def __init__(self, name, health, defense, attack_power):
         super().__init__(name, health, defense, attack_power)
-        self.kill_count = 0
+        self.exp_gained = 0
 
 class Warrior(Player):
     def __init__(self, name):
@@ -46,3 +48,31 @@ class Wizard(Player):
             target.take_damage(15)
         else:
             print(f"{self.name} has no mana remaining!")
+
+
+#ENEMIES
+class Enemy(Character):
+    def __init__(self, name, health, defense, attack_power):
+        super().__init__(name, health, defense, attack_power)
+        self.exp_value = 1
+
+class Goblin(Enemy):
+    def __init__(self, name):
+        super().__init__(name, health = 25, defense = 0, attack_power = 3)
+
+class Orc(Enemy):
+    def __init__(self, name):
+        super().__init__(name, health = 40, defense = 1, attack_power = 5)
+
+class Kobold(Enemy):
+    def __init__(self, name):
+        super().__init__(name, health = 35, defense = 0, attack_power = 4)
+        self.breath_uses = 2
+
+    def fire_breath(self, target):
+        print(f"{self.name} uses it's fire breath!")
+        if self.breath_uses > 0:
+            self.breath_uses -= 1
+            target.take_damage(7)
+        else:
+            print(f"{self.name} has used all of its fire breath!")
