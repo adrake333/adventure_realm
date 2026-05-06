@@ -9,8 +9,8 @@ class Healing_Potion(Item):
         self.heal_amount = heal_amount
 
     def use(self, target):
-        target.health += self.heal_amount
-        print(f"{target.name} used {self.name} and healed {self.heal_amount} HP!")
+        print(f"Using {self.name}...")
+        target.heal(self.heal_amount)
 
 class Mana_Potion(Item):
     def __init__(self, name, mana_restored):
@@ -18,8 +18,8 @@ class Mana_Potion(Item):
         self.mana_restored = mana_restored
 
     def use(self, target):
-        target.mana += mana_restored
-        print(f"{target.name} used {self.name} and restored {mana_restored} Mana!")
+        print(f"Using {self.name}...")
+        target.restore_mana(self.mana_restored)
 
 class Coins(Item):
     def __init__(self, name, amount):

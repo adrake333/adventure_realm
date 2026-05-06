@@ -4,6 +4,7 @@ from src import Coins, Healing_Potion, Mana_Potion
 class Character:
     def __init__(self, name, health, defense, attack_power):
         self.name = name
+        self.max_health = health
         self.health = health
         self.defense = defense
         self.attack_power = attack_power
@@ -40,6 +41,23 @@ class Player(Character):
     def loot_coins(self, item):
         self.coins += item.amount
 
+    def use_item(self, item):
+        if item in self.inventory:
+            item.use(self)
+            self.inventory.remove(item)
+        else:
+            print("You don't have that item!")
+
+    def heal(self, amount):
+        self.health = min(self.health + amount, self.max_health)
+        print(f"{self.name} healed! Current health: {self.health}/{self.max_health}")
+
+    def restore_mana(self, amount):
+        if self.max_mana == 0:
+            print(f"{self.name} has no use for mana!")
+        self.mana = min(self.mana + amount, self.max_mana)
+        print(f"{self.name} has recharged! Current mana: {self.mana}/{self.max_mana}")
+
 class Warrior(Player):
     def __init__(self, name):
         super().__init__(name, health = 50, defense = 2, attack_power = 8)
@@ -52,6 +70,7 @@ class Wizard(Player):
     def __init__(self, name):
         super().__init__(name, health = 40, defense = 0, attack_power = 10)
         self.mana = 10
+        self.max_mana = 10
 
     def fireball(self, target):
         print(f"{self.name} casts a fireball!")
