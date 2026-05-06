@@ -28,6 +28,7 @@ def create_character():
     return player
 
 def run_combat(player, enemies):
+#presentation
     while len(enemies) > 0 and player.health > 0:
         print("\n--- Your Turn ---")
         if hasattr(player, "mana"):
@@ -37,6 +38,7 @@ def run_combat(player, enemies):
         print("\n--- Targets ---")
         for i, monster in enumerate(enemies):
             print(f"{i + 1}. {monster.name} ({monster.health} HP)")
+#actions
         actions = ["1. Attack", "2. Inventory"]
         if hasattr(player, "mana") and player.mana > 0:
             actions.append("3. Magic")
@@ -52,19 +54,35 @@ def run_combat(player, enemies):
                 print("Invalid choice, please select from the available actions.")
                 continue
             elif action_choice == "1":
-                print("Who would you like to attack?")
+                if len(enemies) == 1:
+                    player.attack(enemies[0])
+                    break
+                while True:
+                    print("\nWho would you like to attack?")
+                    target_choice = input("> ").strip()
+                    if target_choice.isdigit():
+                        choice_idx = int(target_choice)
+                        if 0 < choice_idx <= len(enemies):
+                            target = enemies[int(choice_idx) - 1]
+                            player.attack(target)
+                            break
+                        else:
+                            print("That enemy doesn't exist!")
+                    else:
+                        print("Invalid target, please select from the available targets.")
                 break
             elif action_choice == "2":
-                print("What would you like to use?")
+                print("\nWhat would you like to use?")
                 break
             elif action_choice == "3":
-                print("What spell would you like to use?")
+                print("\nWhat spell would you like to use?")
                 break
-            else:
-                print("Invalid choice, please select from the available actions.")
+        
 
+#clean up dead enemies
         enemies = [e for e in enemies if e.health > 0]
 
+#transition
         if len(enemies) > 0:
             print("\n--- Enemy Turn ---")
             for monster in enemies:
