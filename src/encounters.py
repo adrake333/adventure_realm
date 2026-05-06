@@ -11,3 +11,6 @@ def get_random_encounter():
         [Kobold("Fire-spitter"), Kobold("Flame-tongue"), Goblin("Lizard-like Goblin")]
     ]
     return random.choice(encounters)
+
+def get_tutorial_encounter():
+    return [Goblin("Weak Goblin")]
