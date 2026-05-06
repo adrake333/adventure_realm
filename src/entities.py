@@ -1,5 +1,5 @@
 import random
-from src import Coins, Healing_Potion, Mana_Potion
+from src.items import Coins, Healing_Potion, Mana_Potion
 
 class Character:
     def __init__(self, name, health, defense, attack_power):
