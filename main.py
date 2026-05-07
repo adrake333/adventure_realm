@@ -137,5 +137,10 @@ def run_combat(player, enemies):
                     print("You have fallen in battle...")
                     break
 
+###START GAME###
+
 current_player = create_character()
 current_player.describe()
+story_tutorial_start()
+run_combat(current_player, get_tutorial_encounter())
+story_tutorial_end()
