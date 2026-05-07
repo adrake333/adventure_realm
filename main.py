@@ -41,7 +41,7 @@ def run_combat(player, enemies):
 #actions
         actions = ["1. Attack", "2. Inventory"]
         if hasattr(player, "mana") and player.mana > 0:
-            actions.append("3. Magic")
+            actions.append("3. Fireball")
         while True:
             turn_over = False
             print("\n--- Actions ---")
@@ -99,9 +99,26 @@ def run_combat(player, enemies):
                                 print("That item doesn't exist!")
                         else:
                             print("Invalid item, please select from your inventory.")
-#magic            
+#fireball            
             elif action_choice == "3":
-                print("\nWhat spell would you like to use?")
+                if len(enemies) == 1:
+                    player.fireball(enemies[0])
+                    turn_over = True
+                    break
+                while True:
+                    print("\nWho would you like to target?")
+                    target_choice = input("> ").strip()
+                    if target_choice.isdigit():
+                        choice_idx = int(target_choice)
+                        if 0 < choice_idx <= len(enemies):
+                            target = enemies[choice_idx - 1]
+                            player.fireball(target)
+                            turn_over = True
+                            break
+                        else:
+                            print("That enemy doesn't exist!")
+                    else:
+                        print("Invalid target, please select from the available targets.")
                 break
             
             if turn_over:
@@ -116,6 +133,9 @@ def run_combat(player, enemies):
             print("\n--- Enemy Turn ---")
             for monster in enemies:
                 monster.act(player)
+                if player.health <= 0:
+                    print("You have fallen in battle...")
+                    break
 
 current_player = create_character()
 current_player.describe()
