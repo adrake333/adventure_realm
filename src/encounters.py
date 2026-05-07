@@ -13,4 +13,4 @@ def get_random_encounter():
     return random.choice(encounters)
 
 def get_tutorial_encounter():
-    return [Goblin("Weak Goblin")]
+    return [Tutorial_Goblin("Weak Goblin")]

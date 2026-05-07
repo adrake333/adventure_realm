@@ -160,3 +160,10 @@ class Kobold(Enemy):
             return Mana_Potion("Mana Potion", mana_restored = 2)
         else:
             return None
+
+class Tutorial_Goblin(Enemy):
+    def __init__(self, name):
+        super().__init__(name, health = 15, defense = 0, attack_power = 3)
+
+    def drop_loot(self):
+        return Healing_Potion("Health_Potion", heal_amount = 15)
