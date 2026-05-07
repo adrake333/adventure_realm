@@ -119,7 +119,7 @@ class Wizard(Player):
         print(f"{self.name} casts a fireball!")
         if self.mana > 0:
             self.mana -= 1
-            target.take_damage(attack_power * 2)
+            target.take_damage(self.attack_power * 2)
         else:
             print(f"{self.name} has no mana remaining!")
 
