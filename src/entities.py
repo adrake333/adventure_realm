@@ -12,11 +12,14 @@ class Character:
     def describe(self):
         print(f"{self.name} has {self.health} health, {self.defense} defense, and {self.attack_power} power.")
 
+    def get_attack_damage(self):
+        low = self.attack_power - 2
+        high = self.attack_power + 5
+        return random.randint(max(0, low), high)
+
     def attack(self, target):
-        if self.attack_power <= target.defense:
-            print("The attack had no effect!")
-        else:
-            target.take_damage(self.attack_power - target.defense)
+        damage = self.get_attack_damage()
+        target.take_damage(damage)
 
     def take_damage(self, damage):
         self.health -= damage
@@ -60,15 +63,15 @@ class Player(Character):
 
 class Warrior(Player):
     def __init__(self, name):
-        super().__init__(name, health = 50, defense = 2, attack_power = 8)
+        super().__init__(name, health = 150, defense = 5, attack_power = 8)
 
 class Archer(Player):
     def __init__(self, name):
-        super().__init__(name, health = 50, defense = 0, attack_power = 10)
+        super().__init__(name, health = 150, defense = 2, attack_power = 12)
 
 class Wizard(Player):
     def __init__(self, name):
-        super().__init__(name, health = 40, defense = 0, attack_power = 10)
+        super().__init__(name, health = 120, defense = 0, attack_power = 10)
         self.mana = 10
         self.max_mana = 10
 
@@ -76,7 +79,7 @@ class Wizard(Player):
         print(f"{self.name} casts a fireball!")
         if self.mana > 0:
             self.mana -= 1
-            target.take_damage(15)
+            target.take_damage(20)
         else:
             print(f"{self.name} has no mana remaining!")
 
@@ -128,7 +131,7 @@ class Orc(Enemy):
             amount = random.randint(3,8)
             return Coins("Gold", amount)
         elif choice == "health_potion":
-            return Healing_Potion("Health Potion", heal_amount = 15)
+            return Healing_Potion("Health Potion", heal_amount = 50)
         else:
             return None
 
@@ -140,7 +143,7 @@ class Kobold(Enemy):
     def fire_breath(self, target):
         print(f"{self.name} uses it's fire breath!")
         self.breath_uses -= 1
-        target.take_damage(7)
+        target.take_damage(12)
 
     def act(self, target):
         if self.breath_uses > 0 and random.random() < 0.35:
@@ -155,7 +158,7 @@ class Kobold(Enemy):
             amount = random.randint(1, 7)
             return Coins("Gold", amount)
         elif choice == "health_potion":
-            return Healing_Potion("Health Potion", heal_amount = 15)
+            return Healing_Potion("Health Potion", heal_amount = 50)
         elif choice == "mana_potion":
             return Mana_Potion("Mana Potion", mana_restored = 2)
         else:
@@ -166,4 +169,4 @@ class Tutorial_Goblin(Enemy):
         super().__init__(name, health = 15, defense = 0, attack_power = 3)
 
     def drop_loot(self):
-        return Healing_Potion("Health_Potion", heal_amount = 15)
+        return Healing_Potion("Health Potion", heal_amount = 50)
