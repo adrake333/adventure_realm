@@ -166,7 +166,7 @@ story_tutorial_end()
 story_cave_1()
 run_combat(player, get_random_encounter())
 story_cave_2()
-path = get_choice("Do you go left or right?", ["left", "right"])
+path = get_choice(player, "Do you go left or right?", ["left", "right"])
 if path == "left":
     print("You head left at the fork and come to a closed door.")
     print("You hear enemies approaching from behind the door...")
@@ -188,4 +188,4 @@ elif path == "right":
             player.add_to_inventory(loot)
         print(f"You pulled {loot} from the chest!")
 story_bonfire()
-
+get_choice(player, "Press enter when you are ready to continue...", [""])

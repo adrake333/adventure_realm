@@ -1,7 +1,7 @@
-def get_choice(prompt, valid_options):
+def get_choice(player, prompt, valid_options):
     while True:
-        choice = input(f"{prompt} (or enter 'i' for inventory: ").lower().strip()
-        if choice = 'i':
+        choice = input(f"{prompt} (or enter 'i' for inventory): ").lower()
+        if choice == 'i':
             player.show_inventory()
             continue
         if choice in valid_options:
@@ -31,5 +31,4 @@ def story_cave_2():
     
 def story_bonfire():
     print("\nYou build a small fire and rest your feet.")
-    input("Press enter when you are ready to continue...")
 
