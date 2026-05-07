@@ -1,5 +1,5 @@
 import random
-from src.entities import Goblin, Orc, Kobold
+from src.entities import Tutorial_Goblin, Goblin, Orc, Kobold
 
 def get_random_encounter():
     encounters = [

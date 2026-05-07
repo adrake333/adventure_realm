@@ -1,4 +1,7 @@
-from src.entities import Warrior, Archer, Wizard
+from src.entities import *
+from src.story import *
+from src.encounters import *
+from src.items import *
 
 def create_character():
     print("Welcome to the Adventure Realm!")
