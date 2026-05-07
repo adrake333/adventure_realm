@@ -1,3 +1,10 @@
+def get_left_right_choice():
+    while True:
+        choice = input("Do you go left or right?... ").lower().strip()
+        if choice in ["left", "right"]:
+            return choice
+        print("Invalid choice traveler.")
+
 def story_tutorial_start():
     print("\nAs your firmly grasp your weapon you begin to look around.")
     print("You are standing in a dimly lit cave. A torch lights up ahead of you.")
@@ -18,5 +25,8 @@ def story_cave_2():
     print("\nYou have managed to survive your first real fight!")
     print("Spurred on by hope you press forward.")
     print("After a short while you come to a dimly lit split in the cave.")
-    print("Do you go left or right?")
+    
+def story_bonfire():
+    print("\nYou build a small fire and rest your feet.")
+    input("Press enter when you are ready to continue...")
 

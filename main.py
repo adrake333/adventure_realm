@@ -3,6 +3,7 @@ from src.story import *
 from src.encounters import *
 from src.items import *
 import sys
+import random
 
 def create_character():
     print("Welcome to the Adventure Realm!")
@@ -161,3 +162,26 @@ story_tutorial_end()
 story_cave_1()
 run_combat(player, get_random_encounter())
 story_cave_2()
+path = get_left_right_choice()
+if path == "left":
+    print("You head left at the fork and come to a closed door.")
+    print("You hear enemies approaching from behind the door...")
+    run_combat(player, get_random_encounter())
+elif path == "right":
+    print("You heead right down the path and continue to an open cavern.")
+    print("You look around and find a treasure chest hidden in the corner!")
+    loot_options = [Healing_Potion, Mana_Potion, Coins]
+    for _ in range(3):
+        chosen_class = random.choice(loot_options)
+        if chosen_class == Coins:
+            loot = Coins("Gold", random.randint(10, 30))
+            player.loot_coins(loot)
+        elif chosen_class == Healing_Potion:
+            loot = Healing_Potion("Healh Potion", heal_amount = 50)
+            player.add_to_inventory(loot)
+        elif chosen_class == Mana_Potion:
+            loot = Mana_Potion("Mana Potion", mana_restored = 2)
+            player.add_to_inventory(loot)
+        print(f"You pulled {loot} from the chest!")
+story_bonfire()
+
