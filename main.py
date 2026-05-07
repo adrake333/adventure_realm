@@ -138,6 +138,10 @@ def run_combat(player, enemies):
                         player.loot_coins(loot)
                     else:
                         player.add_to_inventory(loot)
+#experience
+                player.exp_gained += e.exp
+                while player.exp_gained >= player.exp_to_level:
+                    player.level_up()
 
 #clean up dead enemies
         enemies = [e for e in enemies if e.health > 0]

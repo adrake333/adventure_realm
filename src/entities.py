@@ -10,7 +10,7 @@ class Character:
         self.attack_power = attack_power
 
     def describe(self):
-        print(f"{self.name} has {self.health} health, {self.defense} defense, and {self.attack_power} power.")
+        print(f"{self.name} is level {self.level} and has {self.health} health, {self.defense} defense, and {self.attack_power} power.")
 
     def get_attack_damage(self):
         low = self.attack_power - 2
@@ -33,9 +33,25 @@ class Character:
 class Player(Character):
     def __init__(self, name, health, defense, attack_power):
         super().__init__(name, health, defense, attack_power)
+        self.level = 1
         self.exp_gained = 0
+        self.exp_to_level = 10
         self.inventory = []
         self.coins = 0
+
+    def level_up(self):
+        self.max_health = int(self.max_health * 1.1)
+        self.health = self.max_health
+        self.defense += 1
+        self.attack_power += 2
+        if hasattr(self, "mana"):
+            self.max_mana += 2
+            self.mana = self.max_mana
+        self.level += 1
+        self.exp_to_level *= 2
+        print("You have gained a level!")
+        self.describe()
+        input("Press enter to continue.")
 
     def add_to_inventory(self, item):
         self.inventory.append(item)
@@ -79,7 +95,7 @@ class Wizard(Player):
         print(f"{self.name} casts a fireball!")
         if self.mana > 0:
             self.mana -= 1
-            target.take_damage(20)
+            target.take_damage(attack_power * 2)
         else:
             print(f"{self.name} has no mana remaining!")
 
@@ -88,7 +104,6 @@ class Wizard(Player):
 class Enemy(Character):
     def __init__(self, name, health, defense, attack_power):
         super().__init__(name, health, defense, attack_power)
-        self.exp_value = 1
 
     def act(self, target):
         self.attack(target)
@@ -96,6 +111,7 @@ class Enemy(Character):
 class Goblin(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 25, defense = 0, attack_power = 3)
+        self.exp = 2
 
     def drop_loot(self):
         loot_options = ["coins", "nothing", "nothing"]
@@ -109,6 +125,7 @@ class Goblin(Enemy):
 class Orc(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 40, defense = 1, attack_power = 5)
+        self.exp = 5
 
     def rage(self,target):
         print(f"{self.name} rages, gaining defense and attacking twice!")
@@ -139,6 +156,7 @@ class Kobold(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 35, defense = 0, attack_power = 4)
         self.breath_uses = 2
+        self.exp = 4
 
     def fire_breath(self, target):
         print(f"{self.name} uses it's fire breath!")
@@ -167,6 +185,7 @@ class Kobold(Enemy):
 class Tutorial_Goblin(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 15, defense = 0, attack_power = 3)
+        self.exp = 1
 
     def drop_loot(self):
         return Healing_Potion("Health Potion", heal_amount = 50)
