@@ -127,6 +127,15 @@ def run_combat(player, enemies):
             if turn_over:
                 break
         
+#loot drop
+        for e in enemies:
+            if e.health <= 0:
+                loot = e.drop_loot()
+                if loot is not None:
+                    if isinstance(loot, Coins):
+                        player.loot_coins(loot)
+                    else:
+                        player.add_to_inventory(loot)
 
 #clean up dead enemies
         enemies = [e for e in enemies if e.health > 0]
@@ -142,8 +151,11 @@ def run_combat(player, enemies):
 
 ###START GAME###
 
-current_player = create_character()
-current_player.describe()
+player = create_character()
+player.describe()
 story_tutorial_start()
-run_combat(current_player, get_tutorial_encounter())
+run_combat(player, get_tutorial_encounter())
 story_tutorial_end()
+story_cave_1()
+run_combat(player, get_random_encounter())
+story_cave_2()
