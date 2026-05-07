@@ -77,6 +77,30 @@ class Player(Character):
         self.mana = min(self.mana + amount, self.max_mana)
         print(f"{self.name} has recharged! Current mana: {self.mana}/{self.max_mana}")
 
+    def show_inventory(self):
+        if len(self.inventory) == 0:
+            print("Your inventory is empty")
+            return
+        else:
+            while True:
+                print("\nWhat would you like to use?")
+                for i, item in enumerate(self.inventory):
+                    print(f"{i + 1}. {item.name}.")
+                print("0. Return.")
+                item_choice = input("> ").strip()
+                if item_choice == "0":
+                    break
+                if item_choice.isdigit():
+                    choice_idx = int(item_choice)
+                    if 0 < choice_idx <= len(self.inventory):
+                        item = self.inventory[choice_idx - 1]
+                        self.use_item(item)
+                        break
+                    else:
+                        print("That item doesn't exist!")
+                else:
+                    print("Invalid item, please select from your inventory.")
+
 class Warrior(Player):
     def __init__(self, name):
         super().__init__(name, health = 150, defense = 5, attack_power = 8)

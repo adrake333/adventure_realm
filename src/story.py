@@ -1,7 +1,10 @@
-def get_left_right_choice():
+def get_choice(prompt, valid_options):
     while True:
-        choice = input("Do you go left or right?... ").lower().strip()
-        if choice in ["left", "right"]:
+        choice = input(f"{prompt} (or enter 'i' for inventory: ").lower().strip()
+        if choice = 'i':
+            player.show_inventory()
+            continue
+        if choice in valid_options:
             return choice
         print("Invalid choice traveler.")
 

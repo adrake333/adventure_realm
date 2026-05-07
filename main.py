@@ -166,7 +166,7 @@ story_tutorial_end()
 story_cave_1()
 run_combat(player, get_random_encounter())
 story_cave_2()
-path = get_left_right_choice()
+path = get_choice("Do you go left or right?", ["left", "right"])
 if path == "left":
     print("You head left at the fork and come to a closed door.")
     print("You hear enemies approaching from behind the door...")
