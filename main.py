@@ -43,6 +43,7 @@ def run_combat(player, enemies):
         if hasattr(player, "mana") and player.mana > 0:
             actions.append("3. Magic")
         while True:
+            turn_over = False
             print("\n--- Actions ---")
             for action in actions:
                 print(action)
@@ -53,9 +54,11 @@ def run_combat(player, enemies):
             if action_choice not in valid_actions:
                 print("Invalid choice, please select from the available actions.")
                 continue
+#attack
             elif action_choice == "1":
                 if len(enemies) == 1:
                     player.attack(enemies[0])
+                    turn_over = True
                     break
                 while True:
                     print("\nWho would you like to attack?")
@@ -63,19 +66,45 @@ def run_combat(player, enemies):
                     if target_choice.isdigit():
                         choice_idx = int(target_choice)
                         if 0 < choice_idx <= len(enemies):
-                            target = enemies[int(choice_idx) - 1]
+                            target = enemies[choice_idx - 1]
                             player.attack(target)
+                            turn_over = True
                             break
                         else:
                             print("That enemy doesn't exist!")
                     else:
                         print("Invalid target, please select from the available targets.")
                 break
+#inventory           
             elif action_choice == "2":
-                print("\nWhat would you like to use?")
-                break
+                if len(player.inventory) == 0:
+                    print("Your inventory is empty!")
+                else:
+                    while True:
+                        print("\nWhat would you like to use?")
+                        for i, item in enumerate(player.inventory):
+                            print(f"{i + 1}. {item.name}.")
+                        print("0. Return.")
+                        item_choice = input("> ").strip()
+                        if item_choice == "0":
+                            break
+                        if item_choice.isdigit():
+                            choice_idx = int(item_choice)
+                            if 0 < choice_idx <= len(player.inventory):
+                                item = player.inventory[choice_idx - 1]
+                                player.use_item(item)
+                                turn_over = True
+                                break
+                            else:
+                                print("That item doesn't exist!")
+                        else:
+                            print("Invalid item, please select from your inventory.")
+#magic            
             elif action_choice == "3":
                 print("\nWhat spell would you like to use?")
+                break
+            
+            if turn_over:
                 break
         
 
