@@ -2,6 +2,7 @@ from src.entities import *
 from src.story import *
 from src.encounters import *
 from src.items import *
+import sys
 
 def create_character():
     print("Welcome to the Adventure Realm!")
@@ -147,7 +148,8 @@ def run_combat(player, enemies):
                 monster.act(player)
                 if player.health <= 0:
                     print("You have fallen in battle...")
-                    break
+                    input("Press Enter to acccept your fate...")
+                    sys.exit()
 
 ###START GAME###
 
