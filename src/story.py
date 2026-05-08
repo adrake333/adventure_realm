@@ -78,5 +78,15 @@ def story_cave_6():
     print("You burst through the door and charge at the nearest living creature ready to fight!")
     print("Gungar lets out a road and raises his club... The battle for your life has begun.")
 
-
-
+def story_final():
+    print("\nGungar kneals, clutching at his chest as he heaves heavy breaths from the fight.")
+    print("'You.. cannot stop.. the coming tide.... The orcs.. will rise.. and wipe out.. humanity....'")
+    print("Gungar falls, coughs, and goes lifeless before you. A wave of relief floods your consciousness.")
+    print("As the adrenaline fades, the pain of recent combat begins to come to life. Everything hurts.")
+    print("\nYou sturdy yourself and begin limping towards the exit, expecting little to no resistance.")
+    print("The remainder of the enemies were formed to scouting parties and have gone to gather intel for the time being.")
+    print("You walk through the exit and shield your eyes from the sunlight.")
+    print("\n'You look you've been through the ringer {player.name}.' A voice rings clearly over the sounds of surrounding nature.")
+    print("'You could have come.. a little sooner!' You laugh as you work your way towards your friend's horse, excited to have a speedy trip home.")
+    print("'A wizard is never late!' Your old friend says as you mount the horse with him.")
+    print("\n\n--- CONGRATULATIONS!!! You have survived Gungar and escaped the cave. Thanks for playing! ---")
