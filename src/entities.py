@@ -38,6 +38,7 @@ class Player(Character):
         self.exp_to_level = 10
         self.inventory = []
         self.coins = 0
+        self.kill_count = 0
 
     def level_up(self):
         self.max_health = int(self.max_health * 1.1)

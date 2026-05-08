@@ -142,6 +142,8 @@ def run_combat(player, enemies):
                 player.exp_gained += e.exp
                 while player.exp_gained >= player.exp_to_level:
                     player.level_up()
+#kill_count
+                player.kill_count += 1
 
 #clean up dead enemies
         enemies = [e for e in enemies if e.health > 0]
@@ -160,12 +162,12 @@ def run_combat(player, enemies):
 
 player = create_character()
 player.describe()
-story_tutorial_start()
+story_tutorial_start(player)
 run_combat(player, get_tutorial_encounter())
-story_tutorial_end()
-story_cave_1()
+story_tutorial_end(player)
+story_cave_1(player)
 run_combat(player, get_random_encounter())
-story_cave_2()
+story_cave_2(player)
 path = get_choice(player, "Do you go left or right?", ["left", "right"])
 if path == "left":
     print("\nYou head left at the fork and come to a closed door.")
@@ -186,20 +188,28 @@ elif path == "right":
         elif chosen_class == Mana_Potion:
             loot = Mana_Potion("Mana Potion", mana_restored = 2)
             player.add_to_inventory(loot)
-story_bonfire()
-story_cave_3()
+story_bonfire(player)
+story_cave_3(player)
 run_combat(player, get_random_encounter())
-story_cave_4()
-path = get_choice(player, "Do you go left or right?... ", ["left", "right"]
-    if path == "left":
-        story_cave_4l()
-        run_combat(player, get_random_encounter())
-    if path == "right":
-        story_cave_4r()
-        run_combat(player, get_random_encounter())
-story_bonfire()
-story_cave_5()
+story_cave_4(player)
+path = get_choice(player, "Do you go left or right?... ", ["left", "right"])
+if path == "left":
+    story_cave_4l(player)
+    run_combat(player, get_random_encounter())
+if path == "right":
+    story_cave_4r(player)
+    run_combat(player, get_random_encounter())
+story_bonfire(player)
+story_cave_5(player)
 run_combat(player, get_random_encounter())
-story_cave_6()
+story_cave_6(player)
 run_combat(player, get_boss_encounter())
-story_final()
+story_final(player)
+print("--- {player.name} final stats: ---")
+print("\n--- Level: {player.level} ---")
+print("--- HP: {player.max_health} ---")
+print("--- Defense: {player.defense} ---")
+print("--- Attack Power: {player.attack_power} ---")
+print("\n--- Kills: {player.kill_count} ---")
+print("--- Gold: {player.coins} ---")
+get_choice(player, "\n\nPress enter when you are ready to exit the game... ", [""])
