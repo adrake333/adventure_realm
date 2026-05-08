@@ -134,6 +134,9 @@ class Enemy(Character):
     def act(self, target):
         self.attack(target)
 
+    def drop_loot(self):
+        return None
+
 class Goblin(Enemy):
     def __init__(self, name):
         super().__init__(name, health = 25, defense = 0, attack_power = 3)
@@ -234,4 +237,7 @@ class Gungar(Enemy):
             self.rage(target)
         else:
             self.attack(target)
+
+    def drop_loot(self):
+        return Coins("Gold", random.randint(100, 150))
 

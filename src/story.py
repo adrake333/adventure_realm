@@ -86,7 +86,7 @@ def story_final(player):
     print("\nYou sturdy yourself and begin limping towards the exit, expecting little to no resistance.")
     print("The remainder of the enemies were formed to scouting parties and have gone to gather intel for the time being.")
     print("You walk through the exit and shield your eyes from the sunlight.")
-    print("\n'You look you've been through the ringer {player.name}.' A voice rings clearly over the sounds of surrounding nature.")
+    print(f"\n'You look you've been through the ringer {player.name}.' A voice rings clearly over the sounds of surrounding nature.")
     print("'You could have come.. a little sooner!' You laugh as you work your way towards your friend's horse, excited to have a speedy trip home.")
     print("'A wizard is never late!' Your old friend says as you mount the horse with him.")
     print("\n\n--- CONGRATULATIONS!!! You have survived Gungar and escaped the cave. Thanks for playing! ---")
