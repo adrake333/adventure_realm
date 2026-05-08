@@ -59,6 +59,7 @@ class Player(Character):
 
     def loot_coins(self, item):
         self.coins += item.amount
+        print(f"You have found {item.amount} {item.name}!")
 
     def use_item(self, item):
         if item in self.inventory:
