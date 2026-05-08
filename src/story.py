@@ -33,3 +33,50 @@ def story_bonfire():
     print("\nYou build a small fire and rest your feet.")
     get_choice(player, "Press enter when you are ready to continue...", [""])
 
+def story_cave_3():
+    print("\nAfter a brief respite, you gather your things and press on.")
+    print("You move forward at a careful pace, watching where you plant your feet so as not to make noise or trip.")
+    print("Ahead of you, there are some enemies around a stalagmite chatting.")
+    print("You charge in and take them by surprise!")
+
+def story_cave_4():
+    print("\nHaving defeated your enemies you gather any potions and gold and press on.")
+    print("You begin to wonder where you are, what's going on with all these orcs, goblins, and kobolds.")
+    print("How did you get here? Where does this cave lead?")
+    print("So caught up in your thoughts you nearly walk face-first into the wall ahead of you.")
+    print("You see the path extends to your left and right, another fork in the road...")
+
+def story_cave_4l():
+    print("\nYou turn left, determined to make sense of all this one way or another.")
+    print("You hear voices ahead as you ready your weapon for another fight.")
+
+def story_cave_4r():
+    print("\nYou turn right, unsure what this could all mean.")
+    print("You walk for quite some time before you come upon some more enemies.")
+    print("Before you have a chance to hide, they spot you... and charge!")
+
+def story_cave_5():
+    print("\nYou gather your things and prepare to continue your journey, searching for an exit to the cave.")
+    print("You walk slowly and carefully for what feels like hours, though it has only been minutes.")
+    print("The last words of a fallen enemy ringing in your ears...")
+    print("\n'Gungar will be sure to end you. He will use shards of your bones as his toothpicks for months to come...'")
+    print("\nObviously Gungar will need to be dealt with... but... are you strong enough to handle him?")
+    print("As you walk, pondering your near future, you hear the faint sound of footsteps approaching.")
+    print("You read yourself for combat, and charge as they round the corner!")
+
+def story_cave_6():
+    print("\nYou noticed on these enemies, they had an insignia branded into their armor.")
+    print("It appears to be an orc skull inside a crescent moon.")
+    print("You assume these must be some of Gungar's guards.")
+    print("\nYou rifle through their belongings and find battle plans, and a crude map.")
+    print("The battle plans seem to detail an overwhelming assault on a nearby settlement! You must escape and warn them!")
+    print("You begin to look at the map and realize it is a map of the cave system you're in.")
+    print("Finding the turns and rooms you've explored, you're able to pinpoint where you are now.")
+    print("The only problem... There's one way out... And it's through the War Room.")
+    print("\nYou can only assume Gungar is in there and your chances of a stealthy escape are nil.")
+    print("You approach the door to the War Room and steal your resolve. You brace for a tough fight and grip your weapon tight.")
+    print("You burst through the door and charge at the nearest living creature ready to fight!")
+    print("Gungar lets out a road and raises his club... The battle for your life has begun.")
+
+
+
