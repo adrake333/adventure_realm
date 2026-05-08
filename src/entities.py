@@ -214,3 +214,23 @@ class Tutorial_Goblin(Enemy):
 
     def drop_loot(self):
         return Healing_Potion("Health Potion", heal_amount = 50)
+
+class Gungar(Enemy):
+    def __init__(self, name):
+        super().__init__(name, health = 100, defense = 5, attack_power = 9)
+        self.exp = 50
+
+    def rage(self,target):
+        print(f"{self.name} rages, gaining defense and attacking twice!")
+        self.defense += 1
+        if self.defense > 8:
+            self.defense = 8
+        self.attack(target)
+        self.attack(target)
+
+    def act(self, target):
+        if self.health < 30 and random.random() < 0.45:
+            self.rage(target)
+        else:
+            self.attack(target)
+

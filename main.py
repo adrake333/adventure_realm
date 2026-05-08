@@ -187,4 +187,19 @@ elif path == "right":
             loot = Mana_Potion("Mana Potion", mana_restored = 2)
             player.add_to_inventory(loot)
 story_bonfire()
-get_choice(player, "Press enter when you are ready to continue...", [""])
+story_cave_3()
+run_combat(player, get_random_encounter())
+story_cave_4()
+path = get_choice(player, "Do you go left or right?... ", ["left", "right"]
+    if path == "left":
+        story_cave_4l()
+        run_combat(player, get_random_encounter())
+    if path == "right":
+        story_cave_4r()
+        run_combat(player, get_random_encounter())
+story_bonfire()
+story_cave_5()
+run_combat(player, get_random_encounter())
+story_cave_6()
+run_combat(player, get_boss_encounter())
+story_final()

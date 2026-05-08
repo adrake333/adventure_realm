@@ -31,4 +31,5 @@ def story_cave_2():
     
 def story_bonfire():
     print("\nYou build a small fire and rest your feet.")
+    get_choice(player, "Press enter when you are ready to continue...", [""])
 
